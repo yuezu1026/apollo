@@ -1,0 +1,1 @@
+pgloader mysql://root:123456@192.168.3.35:3308/apolloconfigdb postgresql://postgres:123456@192.168.3.35/apolloconfigdb
