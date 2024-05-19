@@ -122,14 +122,14 @@ public class AuthConfiguration {
             AuthenticationManagerBuilder auth,
             DataSource datasource,
             EntityManagerFactory entityManagerFactory) throws Exception {
-      char openQuote = '`';
-      char closeQuote = '`';
+      char openQuote = ' ';
+      char closeQuote = ' ';
       try {
         SessionFactoryImplementor sessionFactory = entityManagerFactory.unwrap(
                 SessionFactoryImplementor.class);
         Dialect dialect = sessionFactory.getJdbcServices().getDialect();
-        openQuote = dialect.openQuote();
-        closeQuote = dialect.closeQuote();
+        //openQuote = openQuote();
+        //closeQuote = closeQuote();
       } catch (Throwable ex) {
         //ignore
       }
