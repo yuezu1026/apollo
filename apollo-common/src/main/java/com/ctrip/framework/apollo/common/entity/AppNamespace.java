@@ -32,9 +32,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`AppNamespace`")
-@SQLDelete(sql = "Update AppNamespace set IsDeleted = true, DeletedAt = ROUND(UNIX_TIMESTAMP(NOW(4))*1000) where Id = ?")
-@Where(clause = "`IsDeleted` = false")
+@Table(name = "AppNamespace")
+@SQLDelete(sql = "Update AppNamespace set IsDeleted = true, DeletedAt = round(date_part('epoch',now())) where Id = ?")
+@Where(clause = "IsDeleted = false")
 @ApolloAuditLogDataInfluenceTable(tableName = "AppNamespace")
 public class AppNamespace extends BaseEntity {
 
@@ -43,24 +43,24 @@ public class AppNamespace extends BaseEntity {
       regexp = InputValidator.CLUSTER_NAMESPACE_VALIDATOR,
       message = "Invalid Namespace format: " + InputValidator.INVALID_CLUSTER_NAMESPACE_MESSAGE + " & " + InputValidator.INVALID_NAMESPACE_NAMESPACE_MESSAGE
   )
-  @Column(name = "`Name`", nullable = false)
+  @Column(name = "Name", nullable = false)
   @ApolloAuditLogDataInfluenceTableField(fieldName = "Name")
   private String name;
 
   @ApolloAuditLogDataInfluenceTableField(fieldName = "AppId")
   @NotBlank(message = "AppId cannot be blank")
-  @Column(name = "`AppId`", nullable = false)
+  @Column(name = "AppId", nullable = false)
   private String appId;
 
   @ApolloAuditLogDataInfluenceTableField(fieldName = "Format")
-  @Column(name = "`Format`", nullable = false)
+  @Column(name = "Format", nullable = false)
   private String format;
 
   @ApolloAuditLogDataInfluenceTableField(fieldName = "IsPublic")
-  @Column(name = "`IsPublic`", columnDefinition = "Bit default '0'")
+  @Column(name = "IsPublic", columnDefinition = "bool default false")
   private boolean isPublic = false;
 
-  @Column(name = "`Comment`")
+  @Column(name = "Comment")
   private String comment;
 
   public String getAppId() {

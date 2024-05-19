@@ -31,13 +31,13 @@ import javax.persistence.Table;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "`Role`")
-@SQLDelete(sql = "Update Role set IsDeleted = true, DeletedAt = ROUND(UNIX_TIMESTAMP(NOW(4))*1000) where Id = ?")
-@Where(clause = "`IsDeleted` = false")
+@Table(name = "Role")
+@SQLDelete(sql = "Update Role set IsDeleted = true, DeletedAt = round(date_part('epoch',now())) where Id = ?")
+@Where(clause = "IsDeleted = false")
 @ApolloAuditLogDataInfluenceTable(tableName = "Role")
 public class Role extends BaseEntity {
   @ApolloAuditLogDataInfluenceTableField(fieldName = "RoleName")
-  @Column(name = "`RoleName`", nullable = false)
+  @Column(name = "RoleName", nullable = false)
   private String roleName;
 
   public String getRoleName() {

@@ -29,32 +29,32 @@ import javax.persistence.Table;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "`ReleaseHistory`")
-@SQLDelete(sql = "Update ReleaseHistory set IsDeleted = true, DeletedAt = ROUND(UNIX_TIMESTAMP(NOW(4))*1000) where Id = ?")
-@Where(clause = "`IsDeleted` = false")
+@Table(name = "ReleaseHistory")
+@SQLDelete(sql = "Update ReleaseHistory set IsDeleted = true, DeletedAt = round(date_part('epoch',now())) where Id = ?")
+@Where(clause = "IsDeleted = false")
 public class ReleaseHistory extends BaseEntity {
-  @Column(name = "`AppId`", nullable = false)
+  @Column(name = "AppId", nullable = false)
   private String appId;
 
-  @Column(name = "`ClusterName`", nullable = false)
+  @Column(name = "ClusterName", nullable = false)
   private String clusterName;
 
-  @Column(name = "`NamespaceName`", nullable = false)
+  @Column(name = "NamespaceName", nullable = false)
   private String namespaceName;
 
-  @Column(name = "`BranchName`", nullable = false)
+  @Column(name = "BranchName", nullable = false)
   private String branchName;
 
-  @Column(name = "`ReleaseId`")
+  @Column(name = "ReleaseId")
   private long releaseId;
 
-  @Column(name = "`PreviousReleaseId`")
+  @Column(name = "PreviousReleaseId")
   private long previousReleaseId;
 
-  @Column(name = "`Operation`")
+  @Column(name = "Operation")
   private int operation;
 
-  @Column(name = "`OperationContext`", nullable = false)
+  @Column(name = "OperationContext", nullable = false)
   private String operationContext;
 
   public String getAppId() {

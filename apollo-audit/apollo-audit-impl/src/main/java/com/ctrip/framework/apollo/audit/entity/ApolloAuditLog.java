@@ -22,7 +22,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`AuditLog`")
+@Table(name = "AuditLog")
 public class ApolloAuditLog extends BaseEntity {
 
   @Column(name = "TraceId", nullable = false)

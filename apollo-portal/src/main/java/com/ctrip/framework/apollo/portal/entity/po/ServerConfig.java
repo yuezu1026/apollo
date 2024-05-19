@@ -32,22 +32,22 @@ import javax.persistence.Table;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "`ServerConfig`")
-@SQLDelete(sql = "Update ServerConfig set IsDeleted = true, DeletedAt = ROUND(UNIX_TIMESTAMP(NOW(4))*1000) where Id = ?")
-@Where(clause = "`IsDeleted` = false")
+@Table(name = "ServerConfig")
+@SQLDelete(sql = "Update ServerConfig set IsDeleted = true, DeletedAt = round(date_part('epoch',now())) where Id = ?")
+@Where(clause = "IsDeleted = false")
 @ApolloAuditLogDataInfluenceTable(tableName = "ServerConfig")
 public class ServerConfig extends BaseEntity {
   @NotBlank(message = "ServerConfig.Key cannot be blank")
-  @Column(name = "`Key`", nullable = false)
+  @Column(name = "Key", nullable = false)
   @ApolloAuditLogDataInfluenceTableField(fieldName = "Key")
   private String key;
 
   @NotBlank(message = "ServerConfig.Value cannot be blank")
-  @Column(name = "`Value`", nullable = false)
+  @Column(name = "Value", nullable = false)
   @ApolloAuditLogDataInfluenceTableField(fieldName = "Value")
   private String value;
 
-  @Column(name = "`Comment`", nullable = false)
+  @Column(name = "Comment", nullable = false)
   private String comment;
 
   public String getKey() {

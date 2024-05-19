@@ -29,14 +29,14 @@ import javax.persistence.Table;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "`Permission`")
-@SQLDelete(sql = "Update Permission set IsDeleted = true, DeletedAt = ROUND(UNIX_TIMESTAMP(NOW(4))*1000) where Id = ?")
-@Where(clause = "`IsDeleted` = false")
+@Table(name = "Permission")
+@SQLDelete(sql = "Update Permission set IsDeleted = true, DeletedAt = round(date_part('epoch',now())) where Id = ?")
+@Where(clause = "IsDeleted = false")
 public class Permission extends BaseEntity {
-  @Column(name = "`PermissionType`", nullable = false)
+  @Column(name = "PermissionType", nullable = false)
   private String permissionType;
 
-  @Column(name = "`TargetId`", nullable = false)
+  @Column(name = "TargetId", nullable = false)
   private String targetId;
 
   public String getPermissionType() {

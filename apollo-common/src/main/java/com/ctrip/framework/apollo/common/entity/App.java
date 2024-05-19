@@ -29,14 +29,14 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`App`")
-@SQLDelete(sql = "Update App set IsDeleted = true, DeletedAt = ROUND(UNIX_TIMESTAMP(NOW(4))*1000) where Id = ?")
-@Where(clause = "`IsDeleted` = false")
+@Table(name = "App")
+@SQLDelete(sql = "Update App set IsDeleted = true, DeletedAt =round(date_part('epoch',now())) where Id = ?")
+@Where(clause = "IsDeleted = false")
 @ApolloAuditLogDataInfluenceTable(tableName = "App")
 public class App extends BaseEntity {
 
   @NotBlank(message = "Name cannot be blank")
-  @Column(name = "`Name`", nullable = false)
+  @Column(name = "Name", nullable = false)
   @ApolloAuditLogDataInfluenceTableField(fieldName = "Name")
   private String name;
 
@@ -45,22 +45,22 @@ public class App extends BaseEntity {
       regexp = InputValidator.CLUSTER_NAMESPACE_VALIDATOR,
       message = InputValidator.INVALID_CLUSTER_NAMESPACE_MESSAGE
   )
-  @Column(name = "`AppId`", nullable = false)
+  @Column(name = "AppId", nullable = false)
   @ApolloAuditLogDataInfluenceTableField(fieldName = "AppId")
   private String appId;
 
-  @Column(name = "`OrgId`", nullable = false)
+  @Column(name = "OrgId", nullable = false)
   private String orgId;
 
-  @Column(name = "`OrgName`", nullable = false)
+  @Column(name = "OrgName", nullable = false)
   private String orgName;
 
   @NotBlank(message = "OwnerName cannot be blank")
-  @Column(name = "`OwnerName`", nullable = false)
+  @Column(name = "OwnerName", nullable = false)
   private String ownerName;
 
   @NotBlank(message = "OwnerEmail cannot be blank")
-  @Column(name = "`OwnerEmail`", nullable = false)
+  @Column(name = "OwnerEmail", nullable = false)
   private String ownerEmail;
 
   public String getAppId() {

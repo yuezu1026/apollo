@@ -21,7 +21,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`AuditLogDataInfluence`")
+@Table(name = "AuditLogDataInfluence")
 public class ApolloAuditLogDataInfluence extends BaseEntity {
 
   @Column(name = "SpanId", nullable = false)

@@ -27,28 +27,28 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`Item`")
-@SQLDelete(sql = "Update Item set IsDeleted = true, DeletedAt = ROUND(UNIX_TIMESTAMP(NOW(4))*1000) where Id = ?")
-@Where(clause = "`IsDeleted` = false")
+@Table(name = "Item")
+@SQLDelete(sql = "Update Item set IsDeleted = true, DeletedAt = round(date_part('epoch',now())) where Id = ?")
+@Where(clause = "IsDeleted = false")
 public class Item extends BaseEntity {
 
-  @Column(name = "`NamespaceId`", nullable = false)
+  @Column(name = "NamespaceId", nullable = false)
   private long namespaceId;
 
-  @Column(name = "`Key`", nullable = false)
+  @Column(name = "Key", nullable = false)
   private String key;
 
-  @Column(name = "`Type`")
+  @Column(name = "Type")
   private int type;
 
-  @Column(name = "`Value`")
+  @Column(name = "Value")
   @Lob
   private String value;
 
-  @Column(name = "`Comment`")
+  @Column(name = "Comment")
   private String comment;
 
-  @Column(name = "`LineNum`")
+  @Column(name = "LineNum")
   private Integer lineNum;
 
   public String getComment() {

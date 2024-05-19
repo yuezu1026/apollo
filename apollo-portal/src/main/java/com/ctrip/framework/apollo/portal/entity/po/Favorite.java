@@ -26,18 +26,18 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`Favorite`")
-@SQLDelete(sql = "Update Favorite set IsDeleted = true, DeletedAt = ROUND(UNIX_TIMESTAMP(NOW(4))*1000) where Id = ?")
-@Where(clause = "`IsDeleted` = false")
+@Table(name = "Favorite")
+@SQLDelete(sql = "Update Favorite set IsDeleted = true, DeletedAt = round(date_part('epoch',now())) where Id = ?")
+@Where(clause = "IsDeleted = false")
 public class Favorite extends BaseEntity {
 
-  @Column(name = "`AppId`", nullable = false)
+  @Column(name = "AppId", nullable = false)
   private String appId;
 
-  @Column(name = "`UserId`", nullable = false)
+  @Column(name = "UserId", nullable = false)
   private String userId;
 
-  @Column(name = "`Position`")
+  @Column(name = "Position")
   private long position;
 
   public String getAppId() {

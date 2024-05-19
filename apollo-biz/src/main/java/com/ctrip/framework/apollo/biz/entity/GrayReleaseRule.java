@@ -26,30 +26,30 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`GrayReleaseRule`")
-@SQLDelete(sql = "Update GrayReleaseRule set IsDeleted = true, DeletedAt = ROUND(UNIX_TIMESTAMP(NOW(4))*1000) where Id = ?")
-@Where(clause = "`IsDeleted` = false")
+@Table(name = "GrayReleaseRule")
+@SQLDelete(sql = "Update GrayReleaseRule set IsDeleted = true, DeletedAt = round(date_part('epoch',now())) where Id = ?")
+@Where(clause = "IsDeleted = false")
 public class GrayReleaseRule extends BaseEntity{
 
-  @Column(name = "`AppId`", nullable = false)
+  @Column(name = "AppId", nullable = false)
   private String appId;
 
-  @Column(name = "`ClusterName`", nullable = false)
+  @Column(name = "ClusterName", nullable = false)
   private String clusterName;
 
-  @Column(name = "`NamespaceName`", nullable = false)
+  @Column(name = "NamespaceName", nullable = false)
   private String namespaceName;
 
-  @Column(name = "`BranchName`", nullable = false)
+  @Column(name = "BranchName", nullable = false)
   private String branchName;
 
-  @Column(name = "`Rules`")
+  @Column(name = "Rules")
   private String rules;
 
-  @Column(name = "`ReleaseId`", nullable = false)
+  @Column(name = "ReleaseId", nullable = false)
   private Long releaseId;
 
-  @Column(name = "`BranchStatus`", nullable = false)
+  @Column(name = "BranchStatus", nullable = false)
   private int branchStatus;
 
   public String getAppId() {
